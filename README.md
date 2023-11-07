@@ -1,0 +1,1 @@
+./docs/pages/power-manager_halSpec.md
