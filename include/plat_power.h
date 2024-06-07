@@ -129,6 +129,7 @@ typedef enum _PWRMGR_WakeupSrcType_t
  * @retval    PWRMGR_ALREADY_INITIALIZED    - Function is already initialized
  * @retval    PWRMGR_INIT_FAILURE           - Function has failed to properly initialize
  * 
+ * @post PLAT_TERM() must be called to release resources.
  */
 pmStatus_t PLAT_INIT( void );
 
