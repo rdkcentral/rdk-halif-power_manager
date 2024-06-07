@@ -1,12 +1,5 @@
 # Power Manager HAL Documentation
 
-## History
-
-| Date(DD/MM/YY) | Comment | Version |
-| ---- | ------- | ------- |
-| 21/09/23 | Second Release  | 1.0.1 |
-| 05/06/23  | First Release | 1.0.0 |
-
 ## Table of Contents
 
 - [Acronyms, Terms and Abbreviations](#acronyms-terms-and-abbreviations)
@@ -48,7 +41,6 @@
 ## References
 
 ## Description
-
 
 The diagram below describes a high-level software architecture of the module stack.
 
@@ -154,10 +146,7 @@ The `caller` is expected to have complete control over the life cycle of the `HA
 
 - De-initialize the `HAL` using the function: `PLAT_TERM()`.
 
-
 ### **Sequence Diagram**
-<br/>
-
 
 ```mermaid
 %%{ init : { "theme" : "default", "flowchart" : { "curve" : "stepBefore" }}}%%
@@ -188,10 +177,5 @@ The `caller` is expected to have complete control over the life cycle of the `HA
  ```
 
 ### **State Diagram**
-<br/>
 
 ![State Diagram](/docs/pages/images/pwrmgr_state_diagram.png)
-    
-    
-
-<br/>
