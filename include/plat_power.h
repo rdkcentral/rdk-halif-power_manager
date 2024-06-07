@@ -135,7 +135,7 @@ pmStatus_t PLAT_INIT( void );
 /**
  * @brief Sets the CPE Power State
  *
- * This function is just required to hold the value of the current power state status.
+ * This fumction is just required to hold the value of the current power state status.
  *
  * @param[in]  newState - The new power state value
  *
@@ -221,11 +221,12 @@ pmStatus_t PLAT_API_GetWakeupSrc( PWRMGR_WakeupSrcType_t srcType, bool  *enable 
 /**
  * @brief Resets the power state of the device
  * 
- * @note PLAT_Reset() is deprecated.
+ * @note PLAT_Reset() will be deprecated.
  *
  * @param[in] newState  - The state to be set
  * 
  * @return    pmStatus_t                - Status
+ * @retval    PWRMGR_SUCCESS            - Success
  * @retval    PWRMGR_NOT_INITIALIZED    - Module is not initialised
  * @retval    PWRMGR_INVALID_ARGUMENT   - Parameter passed to this function is invalid
  * @retval    PWRMGR_SET_FAILURE        - Failed to update
@@ -233,8 +234,6 @@ pmStatus_t PLAT_API_GetWakeupSrc( PWRMGR_WakeupSrcType_t srcType, bool  *enable 
  * @pre PLAT_INIT() must be called before calling this API
  * 
  * @warning This API is Not thread safe
- * 
- * @note Given that PLAT_Reset() reboots the device, it does not return on a success
  *
  * @see PWRMgr_PowerState_t
  * 
