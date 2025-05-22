@@ -52,7 +52,7 @@ x[Power Manager HAL]<-->z[SOC Drivers];
 style y fill:#99CCFF,stroke:#333,stroke-width:0.3px,align:left
 style z fill:#fcc,stroke:#333,stroke-width:0.3px,align:left
 style x fill:#9f9,stroke:#333,stroke-width:0.3px,align:left
- ```
+```
 
 This interface provides a set of `APIs` to facilitate communication through the `caller` and `HAL`.
 
@@ -174,8 +174,34 @@ The `caller` is expected to have complete control over the life cycle of the `HA
     HAL-->>Caller:return
     Caller ->>HAL:PLAT_TERM()
     HAL-->>Caller:return
- ```
+```
 
 ### **State Diagram**
 
-![State Diagram](/docs/pages/images/pwrmgr_state_diagram.png)
+<!-- ![State Diagram](/docs/pages/images/pwrmgr_state_diagram.png) -->
+
+```mermaid
+flowchart TD
+    PO[Powered On]
+    POF[Powered Off]
+    SB[Standby]
+    LS[Light Sleep]
+    DS[DeepSleep]
+
+    PO -->|Application Initiated, State: Standby, User Inaction, Power Off| SB
+    PO -->|Crash/Pysical Power OFF| POF
+
+    SB -->|Application Initiated, State: Deep Sleep, User Inaction/Time Out| DS
+    SB -->|Application Initiated, State: ON, Key Pressed/CEC/MD/FFV| PO
+    SB -->|Reboot / Reboot/Physical Power Off| POF
+
+    LS -->|Application Initiated, State: Deep Sleep, User Inaction/Time Out| DS
+    LS -->|Application Initiated, State: ON, Key Pressed/CEC/MD/FFV| PO
+    LS -->|Reboot / Physical Power Off| POF
+
+    DS -->|DS Timeout/MD/FFV, Key Pressed/CEC, WoL/WoWL| LS
+    DS -->|DS Timeout/MD/FFV, Key Pressed/CEC, WoL/WoWL, When Light Sleep is not available| SB
+    DS -->|Physical Power Off| POF
+
+    POF -->|Cold boot / Plugin / Reset / Reboot| SB
+```
